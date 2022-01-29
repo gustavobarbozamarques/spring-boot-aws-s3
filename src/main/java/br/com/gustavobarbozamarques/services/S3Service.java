@@ -49,8 +49,8 @@ public class S3Service {
     }
 
     public String generateTempPublicLink(String key) {
-        Date expirateInFiveMinutes = Date.from(LocalDateTime.now().plusMinutes(linkMaxExpirationTime).atZone(ZoneId.systemDefault()).toInstant());
-        return s3.generatePresignedUrl(bucket, key, expirateInFiveMinutes, HttpMethod.GET).toString();
+        Date linkMaxExpirationTimeDate = Date.from(LocalDateTime.now().plusMinutes(linkMaxExpirationTime).atZone(ZoneId.systemDefault()).toInstant());
+        return s3.generatePresignedUrl(bucket, key, linkMaxExpirationTimeDate, HttpMethod.GET).toString();
     }
 
     public void upload(MultipartFile multipartFile) throws IOException {
